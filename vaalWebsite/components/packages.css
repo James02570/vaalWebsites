@@ -1,0 +1,41 @@
+/* Packages styles — follow existing project's CSS conventions */
+
+.services-hero{
+	background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+	  url(../assets/pictures/pexels-goumbik-574069.jpg) no-repeat center center/cover;
+	padding: 50px 0;
+	text-align: center;
+	color: white;
+}
+.services-hero__title{
+	font-size: clamp(20px, 4vw, 40px);
+	margin-bottom: 10px;
+	text-transform: uppercase;
+}
+.services-hero__subtitle{ font-size: clamp(12px,2.2vw,18px); max-width: 900px; margin: 0 auto; line-height:1.6; }
+
+.services-packages{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 20px;
+	padding: 30px 20px;
+	background-color: #f9f9f9;
+}
+.package{
+	background: white;
+	border-radius: 10px;
+	padding: 20px;
+	width: 300px;
+	box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.package__title{ font-size: clamp(16px, 3vw, 22px); color: #2B579A; margin-bottom: 6px; }
+.package__price{ font-size: clamp(14px, 2.2vw, 18px); color: #0078D4; font-weight:700; margin-bottom:10px; }
+.package__features{ list-style:none; padding-left:0; margin:0 0 10px 0; }
+.package__features li{ margin-bottom:6px; padding-left: 14px; position: relative; }
+.package__features li::before{ content: "✔"; position: absolute; left: 0; color: #0078D4; }
+
+@media (max-width: 800px){
+	.services-packages{ padding: 20px; }
+	.package{ width: 100%; }
+}

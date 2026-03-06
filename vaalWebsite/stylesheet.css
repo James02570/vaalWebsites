@@ -1,0 +1,229 @@
+/*────────────────────────────────────────────────────────────────────────────
+  1. Design Tokens & Resets
+────────────────────────────────────────────────────────────────────────────*/
+
+:root{
+  --text-lighter: #ffffff;
+  --nav-bg: #0078D4;
+  --nav-text: #ffffff;
+  --footer-bg: #2B579A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.5;
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+/*────────────────────────────────────────────────────────────────────────────
+  2. Navbar
+────────────────────────────────────────────────────────────────────────────*/
+.navBar {
+  position: fixed;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0078D4;
+  height: 10vh;
+  padding: 0 1rem;
+  z-index: 1000;
+}
+
+.navBar h1 {
+  color: white;
+  font-size: 1.875rem;
+}
+
+.navBar h1 span {
+  font-weight: 400;
+}
+
+.navBar ul {
+  display: flex;
+  color: white;
+  gap: 1rem;
+}
+
+.navBar ul li a {
+  display: block;
+  color: var(--nav-text);
+  padding: 0.5rem 1rem;
+  transition: background 0.2s;
+}
+
+.navBar ul li a:hover,
+.navBar ul li.active a {
+  background-color: #3399EB;
+  border-radius: 10px;
+}
+
+/*────────────────────────────────────────────────────────────────────────────
+  3. Hamburger Toggle (mobile only)
+────────────────────────────────────────────────────────────────────────────*/
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1100; /* keep button above nav links */
+}
+
+.hamburger .bar {
+  height: 3px;
+  background: var(--text-lighter, #fff);
+  border-radius: 2px;
+  display: block;
+  width: 100%;
+}
+
+/*────────────────────────────────────────────────────────────────────────────
+  4. Content Default
+────────────────────────────────────────────────────────────────────────────*/
+.content {
+  background-color: #E5E5E5;
+  padding-top: 10vh;
+  width: 100%;
+}
+
+/*────────────────────────────────────────────────────────────────────────────
+  5. Footer
+────────────────────────────────────────────────────────────────────────────*/
+.footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #0078D4;
+  color: white;
+  height: auto;
+  padding: 10px;
+}
+
+.footer div {
+  display: flex;
+  flex-direction: column;
+  color: var(--text-lighter);
+  gap: 0.25rem;
+}
+
+.footer .socials ul {
+  display: flex;
+  gap: 0.5rem;
+}
+/*────────────────────────────────────────────────────────────────────────────
+  Footer Enhancements: Social Icons & Layout
+────────────────────────────────────────────────────────────────────────────*/
+.footer h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer ul {
+  padding-left: 0;
+}
+
+.footer ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer .socials p {
+  margin-bottom: 0.5rem;
+  color: var(--text-lighter);
+}
+
+.footer .socials__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer .socials__list li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-lighter);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer .socials__list li a:hover {
+  opacity: 0.8;
+}
+
+.footer .socials__list img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+
+/*────────────────────────────────────────────────────────────────────────────
+  6. Responsive (<900px)
+────────────────────────────────────────────────────────────────────────────*/
+@media (max-width: 900px) {
+  /* Show hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Mobile nav drawer */
+  .navBar ul {
+    position: absolute;
+    top: 10vh;           /* below navbar */
+    left: 0;
+    right: 0;
+    background-color: var(--nav-bg);
+    flex-direction: column;
+    align-items: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    z-index: 999;
+  }
+
+  .navBar.open ul {
+    max-height: 300px;   /* reveal links */
+  }
+
+  .navBar.open ul li a {
+    width: 100px;
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+
+  /* Stack footer sections */
+  .footer {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    gap: 0.5rem;
+    margin-top: 10px;
+  }
+  .footer .socials__list li {
+    margin-right: 1rem;
+  }
+
+  .footer a {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}

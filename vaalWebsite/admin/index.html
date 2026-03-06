@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Template Admin — ZIP upload, GitHub, Firestore</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial; max-width: 900px; margin: 32px auto; padding: 0 16px; }
+    h1 { margin-bottom: 8px; }
+    .box { border: 1px solid #e2e8f0; padding: 18px; border-radius: 8px; margin-bottom: 18px; background: #fff; }
+    label { display:block; font-weight:600; margin-top:10px; }
+    input[type="text"], input[type="number"], textarea, select, input[type="file"], input[type="password"] {
+      width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px; margin-top:6px;
+    }
+    button { padding:10px 14px; border-radius:8px; background:#2563eb; color:white; border:none; cursor:pointer; margin-top:12px; }
+    button[disabled]{ opacity:0.6; cursor:not-allowed;}
+    #status { margin-top:12px; font-weight:600; }
+    .small { font-size:13px; color:#374151; margin-top:6px; }
+  </style>
+  <!-- JSZip CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+</head>
+<body>
+  <h1>Template Admin (ZIP → Firestore)</h1>
+
+  <div class="box">
+    <label>Template Metadata</label>
+    <input id="templateName" type="text" placeholder="Template name (e.g. Portfolio Showcase)" />
+    <input id="templateIndustry" type="text" placeholder="Industry (e.g. creative)" />
+    <input id="templateTier" type="text" placeholder="Tier (basic, standard, premium)" />
+    <textarea id="templateDescription" rows="3" placeholder="Short description"></textarea>
+  </div>
+
+  <div class="box">
+    <label>Upload (ZIP or single HTML file)</label>
+    <input id="fileInput" type="file" accept=".zip,.html" />
+    <div class="small">If uploading a ZIP, include <strong>index.html</strong> (CSS/JS inline). Or upload a single HTML file.</div>
+  </div>
+
+
+
+  <button id="startBtn">Start Upload</button>
+  <div id="status"></div>
+
+  <!-- Firebase SDK (modular) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, query, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDVddJ45zp8ftjm9FnywF0icN2Q9cwK9qk",
+      authDomain: "vaalwebsites.firebaseapp.com",
+      projectId: "vaalwebsites",
+      storageBucket: "vaalwebsites.firebasestorage.app",
+      messagingSenderId: "521984179530",
+      appId: "1:521984179530:web:bf62f2c5cadac0dbddd5b3",
+      measurementId: "G-XSZXS29NJ5"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    function status(msg, isError=false) {
+      const s = document.getElementById('status');
+      s.style.color = isError ? '#b91c1c' : '#064e3b';
+      s.innerHTML = msg;
+    }
+
+    async function getTemplatesSnapshot() {
+      const coll = collection(db, 'templates');
+      const q = query(coll);
+      const snap = await getDocs(q);
+      const docs = [];
+      snap.forEach(d => docs.push({ id: d.id, ...d.data() }));
+      return docs;
+    }
+
+    // Single unified file input: use #fileInput for either .zip or .html
+
+    document.getElementById('startBtn').addEventListener('click', async () => {
+      try {
+        const templateName = document.getElementById('templateName').value.trim();
+        const industry = document.getElementById('templateIndustry').value.trim();
+        const tier = document.getElementById('templateTier').value.trim();
+        const description = document.getElementById('templateDescription').value.trim();
+        if (!templateName || !industry || !tier || !description) { status('Fill name, industry, tier, description.', true); return; }
+
+        const fileInput = document.getElementById('fileInput');
+        if (!fileInput.files || fileInput.files.length === 0) { status('Choose a ZIP or HTML file.', true); return; }
+        const file = fileInput.files[0];
+        const fname = file.name.toLowerCase();
+        let indexHtmlContent = '';
+
+        if (fname.endsWith('.html') || fname.endsWith('.htm')) {
+          status('Reading HTML file...');
+          indexHtmlContent = await file.text();
+        } else if (fname.endsWith('.zip')) {
+          status('Reading ZIP...');
+          const jszip = new JSZip();
+          const zip = await jszip.loadAsync(file);
+
+          // Find and extract index.html
+          let indexEntry = null;
+          zip.forEach((path, entry) => { if (!entry.dir && path.toLowerCase().endsWith('index.html')) indexEntry = entry; });
+          if (!indexEntry) { status('index.html not found in ZIP.', true); return; }
+
+          status('Extracting HTML content...');
+          indexHtmlContent = await indexEntry.async('string');
+        } else {
+          status('Unsupported file type. Upload a .zip or .html file.', true);
+          return;
+        }
+
+        // Duplicate detection & auto-increment ID
+        const existingTemplates = await getTemplatesSnapshot();
+        const isDuplicate = existingTemplates.some(t => 
+          String(t.name).toLowerCase() === templateName.toLowerCase() &&
+          String(t.industry).toLowerCase() === industry.toLowerCase() &&
+          String(t.tier).toLowerCase() === tier.toLowerCase()
+        );
+        if (isDuplicate) { status('Duplicate template exists.', true); return; }
+
+        const highest = existingTemplates.reduce((acc, cur) => { const vid = Number(cur.id); return !isNaN(vid) && vid>acc ? vid : acc; }, 0);
+        const newId = highest + 1;
+
+        // Save to Firestore with HTML content
+        status('Saving to Firestore...');
+        const docId = String(newId);
+        const metadata = {
+          id: newId,
+          name: templateName,
+          industry,
+          tier,
+          description,
+          html: indexHtmlContent,
+          createdAt: new Date().toISOString()
+        };
+        await setDoc(doc(db, 'templates', docId), metadata);
+
+        status(`✅ Success! Template uploaded and saved (ID: ${newId}).<br>HTML content stored in Firestore. You can now view it in the gallery.`);
+        
+        // Clear form
+        document.getElementById('templateName').value = '';
+        document.getElementById('templateIndustry').value = '';
+        document.getElementById('templateTier').value = '';
+        document.getElementById('templateDescription').value = '';
+        document.getElementById('fileInput').value = '';
+      } catch(err) { console.error(err); status('Upload failed: ' + (err.message||err), true); }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<section class="template-hero">
+  <h1 class="template-hero__title">Templates Gallery</h1>
+  <p class="template-hero__subtitle">Browse our pre-built templates and pick one to customise for your business.</p>
+</section>
+
+<div class="template-filters">
+  <div class="filter-group">
+    <label for="filter-industry">Filter by Industry:</label>
+    <select id="filter-industry">
+      <option value="">All Industries</option>
+      <option value="business">Business</option>
+      <option value="retail">Retail</option>
+      <option value="creative">Creative</option>
+      <option value="technology">Technology</option>
+      <option value="hospitality">Hospitality</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="filter-tier">Filter by Plan:</label>
+    <select id="filter-tier">
+      <option value="">All Plans</option>
+      <option value="basic">Basic Plan</option>
+      <option value="standard">Standard Plan</option>
+      <option value="premium">Premium Plan</option>
+    </select>
+  </div>
+  <div class="filter-group">
+    <label for="search-templates">Search:</label>
+    <input type="text" id="search-templates" placeholder="Search by name or description...">
+  </div>
+</div>
+
+<div class="template-grid" id="templates-container"></div>
+
+<div id="template-viewer" class="template-viewer hidden">
+  <div class="template-viewer__header">
+    <button id="close-viewer" class="btn">← Back</button>
+    <h2 id="template-viewer-title">Template Name</h2>
+    <a id="request-template-btn" href="#contact" class="btn">Request this Template</a>
+  </div>
+  <iframe id="template-iframe" src="" frameborder="0" title="Template preview"></iframe>
+</div>
+
+<link rel="stylesheet" href="../components/template.css">
+<script src="../scripts/template-gallery.js"></script>
+<script>
+  initTemplateGallery();
+</script>
