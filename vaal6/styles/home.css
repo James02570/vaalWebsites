@@ -1,0 +1,96 @@
+/* HOME SECTION */
+
+.home{
+text-align:center;
+border-radius: 10px;
+}
+
+
+/* BUTTON */
+
+.hero-btn{
+display:inline-block;
+background:#8e44ad;
+color:white;
+padding:14px 28px;
+font-size:18px;
+border-radius:8px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.hero-btn:hover{
+background:#732d91;
+transform:translateY(-2px);
+}
+
+.home-intro p{
+margin-bottom:15px;
+}
+/*Tech used*/
+
+.home-tech-used{
+    margin: auto;
+    color: grey;
+    overflow: hidden;
+}
+.home-tech-used h1{
+    margin: 20px;
+}
+.tech-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.tech-row img {
+    width: 75px;
+    transition: transform 0.3s;
+}
+
+.tech-row img:hover {
+    transform: scale(1.1);
+}
+/*Expert*/
+.expert h1{
+    margin-top: 50px;
+}
+/* EXPERT CARDS */
+
+.expert-cards{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 25px;
+    padding: 40px 20px;
+}
+
+.expert-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.expert-card:hover{
+    transform:translateY(-5px);
+}
+
+/* MOBILE */
+
+@media (max-width:768px){
+
+.home-title{
+font-size:34px;
+}
+
+.home-subtitle{
+font-size:18px;
+}
+
+.hero-btn{
+font-size:16px;
+padding:12px 22px;
+}
+}

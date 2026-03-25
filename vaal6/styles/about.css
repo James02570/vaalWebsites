@@ -1,0 +1,109 @@
+/* ABOUT PAGE BASED ON HOME STYLE */
+
+.about{
+text-align:center;
+border-radius:10px;
+}
+
+/* ABOUT INTRO / HERO */
+.about-hero{
+    border-radius: 10px 10px 0 0;
+    padding: 20px;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/assets/pexels-madeon08-102061.jpg") center/cover no-repeat;
+}
+.about-title{
+    font-size:48px;
+    margin-bottom:20px;
+    color:white;
+}
+.about-subtitle{
+font-size:20px;
+color:whitesmoke;
+margin-bottom:30px;
+}
+.about-vision{
+margin-bottom: 40px;
+padding: 20px;
+font-size:18px;
+color:#444;
+line-height:1.7;
+background-color: #ffffff;
+border-radius: 0 0 10px 10px;
+}
+
+.about-vision p{
+margin-bottom:15px;
+}
+
+
+/* FOUNDER SECTION */
+.founder{
+display:flex;
+align-items:center;
+gap:40px;
+background-color: #ffffff;
+color:#444;
+padding: 20px;
+flex-wrap:wrap;
+text-align:left;
+border-radius: 10px;
+}
+
+.founder-image img{
+width:220px;
+border-radius:8px;
+}
+
+.founder-info{
+flex:1;
+min-width:260px;
+}
+
+/* STORY TIMELINE */
+.story{
+    background-color: #ffffff;
+    margin-top: 40px;
+    border-radius: 10px;
+    padding: 10px;
+}
+.story .timeline{
+border-left:3px solid #8e44ad;
+padding-left:20px;
+margin-top:10px;
+}
+
+.timeline-item{
+margin-bottom:20px;
+}
+
+.timeline-item h4{
+color:#2c3e50;
+margin-bottom:5px;
+font-size:17px;
+}
+
+/* MOBILE / RESPONSIVE */
+@media (max-width:768px){
+
+.about-intro{
+padding:50px 20px;
+}
+
+.about-title{
+font-size:34px;
+}
+
+.about-intro p{
+font-size:16px;
+}
+
+.founder{
+flex-direction:column;
+text-align:center;
+}
+
+.founder-image img{
+width:180px;
+}
+
+}
