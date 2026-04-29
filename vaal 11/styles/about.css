@@ -1,0 +1,190 @@
+/* ============================================================
+   VAAL WEBSITES — about.css
+   ============================================================ */
+
+.about { text-align: center; }
+
+/* ---------- HERO ---------- */
+.page-hero {
+  text-align: center;
+  border-radius: 12px 12px 0 0;
+  padding: 80px 24px 60px;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("../assets/pexels-madeon08-102061.jpg") center / cover no-repeat;
+}
+
+.page-title {
+  color: white;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+
+.page-subtitle {
+  color: rgba(255,255,255,0.9);
+  font-size: clamp(16px, 2.5vw, 20px);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+/* ---------- VISION ---------- */
+.about-vision {
+  display: flex;
+  gap: 0;
+  background: white;
+  border-radius: 0 0 12px 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.vision-block {
+  flex: 1;
+  padding: 36px 36px;
+  text-align: left;
+  color: var(--text);
+  line-height: 1.75;
+  font-size: 16px;
+}
+
+.vision-block:first-child {
+  border-right: 1px solid var(--border);
+}
+
+.vision-block h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+/* ---------- FOUNDER ---------- */
+.founder {
+  display: flex;
+  align-items: flex-start;
+  gap: 36px;
+  background: white;
+  padding: 40px;
+  border-radius: var(--radius-lg);
+  text-align: left;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.founder-avatar {
+  width: 120px;
+  height: 120px;
+  min-width: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--purple), #7c3aed);
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+}
+
+.founder-image img {
+  width: 140px;
+  border-radius: var(--radius-md);
+}
+
+.founder-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  margin-bottom: 6px;
+}
+
+.founder-info h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.founder-info p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+
+/* ---------- TIMELINE ---------- */
+.story {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  text-align: left;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.story h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+.timeline {
+  list-style: none;
+  border-left: 3px solid var(--purple);
+  padding-left: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 28px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.timeline-item:last-child { padding-bottom: 0; }
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  background: var(--purple);
+  border-radius: 50%;
+  position: absolute;
+  left: -36px;
+  top: 4px;
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px var(--purple);
+}
+
+.timeline-item h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+
+.timeline-item p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .about-vision { flex-direction: column; }
+  .vision-block:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .vision-block { padding: 28px 24px; }
+
+  .founder { flex-direction: column; align-items: center; text-align: center; padding: 28px 24px; }
+
+  .story { padding: 28px 20px; }
+}

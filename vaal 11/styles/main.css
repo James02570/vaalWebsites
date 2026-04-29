@@ -1,0 +1,401 @@
+/* ============================================================
+   VAAL WEBSITES — main.css
+   Global styles: reset, navbar, footer, modal, utilities
+   ============================================================ */
+
+/* ---------- VARIABLES ---------- */
+:root {
+  --purple:      #9333ea;
+  --purple-dark: #7c22ce;
+  --navy:        #0A2540;
+  --text:        #374151;
+  --muted:       #6b7280;
+  --border:      #e5e7eb;
+  --bg:          #f4f4f4;
+  --white:       #ffffff;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --shadow-sm:   0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md:   0 8px 24px rgba(0,0,0,0.10);
+  --transition:  0.25s ease;
+}
+
+/* ---------- RESET ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 1000;
+  gap: 16px;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 18px;
+  text-decoration: none;
+  color: var(--navy);
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+}
+
+.nav-links a {
+  padding: 6px 14px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 14px;
+  border-radius: 6px;
+  transition: background var(--transition), color var(--transition);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  background: #f3f4f6;
+  color: var(--text);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-login {
+  background: none;
+  border: none;
+  color: var(--purple);
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition);
+}
+
+.btn-login:hover { background: #f5f3ff; }
+
+.btn-primary {
+  background: var(--purple);
+  text-decoration: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background var(--transition), transform var(--transition);
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: var(--purple-dark);
+  transform: translateY(-1px);
+}
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+/* ---------- MAIN / APP ---------- */
+main {
+  min-height: 60vh;
+  transition: opacity 0.2s ease;
+}
+
+/* ---------- LOADING SPINNER ---------- */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border);
+  border-top-color: var(--purple);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- ERROR PAGE ---------- */
+.error-page {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.error-page h1 { font-size: 2rem; margin-bottom: 12px; }
+.error-page p  { color: var(--muted); margin-bottom: 24px; }
+
+/* ---------- LOGIN MODAL ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.overlay-content {
+  position: relative;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+  transform: scale(0.92) translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.overlay.active .overlay-content {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.overlay-content h1 { margin-bottom: 0.4rem; font-size: 1.8rem; }
+.overlay-content p  { margin-bottom: 1.5rem; color: var(--muted); }
+
+.close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  line-height: 1;
+  padding: 4px;
+  border-radius: 4px;
+  transition: color var(--transition);
+}
+.close-btn:hover { color: var(--text); }
+
+.btnLogin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0.75rem 0;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: transform var(--transition), box-shadow var(--transition);
+  border: 1px solid transparent;
+}
+
+.btnLogin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.btnLogin.google {
+  background: white;
+  color: #444;
+  border-color: #ddd;
+}
+
+.btnLogin.google img {
+  width: 20px;
+  height: 20px;
+}
+
+.btnLogin.apple {
+  background: #000;
+  color: white;
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 60px 40px 40px;
+  background:
+    radial-gradient(circle at top left,  rgba(99,91,255,0.15), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(147,51,234,0.10), transparent 40%),
+    var(--navy);
+  color: white;
+  position: relative;
+}
+
+.footer-column { max-width: 280px; }
+
+.footer-column h2 {
+  margin-bottom: 14px;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+
+.footer-column ul {
+  list-style: none;
+}
+
+.footer-column li {
+  margin-bottom: 8px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.footer-column a {
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--transition);
+}
+
+.footer-column a:hover { opacity: 1; }
+
+.socials-list {
+  display: flex;
+  gap: 14px;
+  margin-top: 10px;
+  list-style: none;
+}
+
+.socials-list img {
+  width: 28px;
+  height: 28px;
+  transition: transform var(--transition);
+}
+
+.socials-list img:hover { transform: scale(1.15); }
+
+.footer-bottom {
+  width: 100%;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  font-size: 13px;
+  opacity: 0.6;
+  text-align: center;
+}
+
+/* ---------- TOAST ---------- */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--navy);
+  color: white;
+  padding: 14px 24px;
+  border-radius: 50px;
+  font-size: 14px;
+  z-index: 3000;
+  opacity: 0;
+  transition: opacity 0.35s, transform 0.35s;
+  pointer-events: none;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+
+.toast.toast-success { background: #166534; }
+.toast.toast-error   { background: #991b1b; }
+
+.toast.toast-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-wrap: wrap;
+    padding: 14px 20px;
+  }
+
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 4;
+    background: white;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    padding: 8px;
+    gap: 2px;
+  }
+
+  .nav-links.open { display: flex; }
+
+  .nav-links a {
+    padding: 10px 16px;
+    border-radius: 6px;
+  }
+
+  .nav-actions { margin-left: auto; }
+
+  .footer {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .footer-column { max-width: 100%; }
+}
