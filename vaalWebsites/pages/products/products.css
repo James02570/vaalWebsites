@@ -1,0 +1,227 @@
+/* ============================================================
+   VAAL WEBSITES — products.css
+   ============================================================ */
+
+.products {
+  padding: 48px 20px 0;
+}
+
+.page-title-dark {
+  text-align: center;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.page-subtitle-dark {
+  text-align: center;
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 32px;
+}
+
+/* ---------- BILLING TOGGLE ---------- */
+.billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.save-badge {
+  background: #dcfce7;
+  color: #166534;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  margin-left: 6px;
+}
+
+.toggle-switch { cursor: pointer; }
+
+.toggle-track {
+  display: block;
+  width: 46px;
+  height: 26px;
+  background: #d1d5db;
+  border-radius: 13px;
+  position: relative;
+  transition: background 0.25s;
+}
+
+.toggle-thumb {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  transition: left 0.25s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+#billingToggle { display: none; }
+
+#billingToggle:checked + .toggle-track { background: var(--purple); }
+#billingToggle:checked + .toggle-track .toggle-thumb { left: 23px; }
+
+/* ---------- PRICING GROUPS ---------- */
+.pricing-group { margin-bottom: 48px; }
+
+.group-label {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+  gap: 22px;
+}
+
+/* ---------- CARDS ---------- */
+.card {
+  background: white;
+  padding: 28px 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: transform var(--transition), box-shadow var(--transition);
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+}
+
+.card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.desc { color: var(--muted); font-size: 14px; margin-bottom: 14px; }
+
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 20px;
+}
+
+.price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.card ul {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.card ul li {
+  color: var(--muted);
+  font-size: 14px;
+  padding: 5px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.card ul li:last-child { border-bottom: none; }
+
+/* ---------- BUTTONS ---------- */
+.btn {
+  display: block;
+  text-align: center;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  background: #1e293b;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+.btn.primary {
+  background: linear-gradient(135deg, #7c3aed, var(--purple));
+}
+
+/* ---------- BADGES ---------- */
+.badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.popular-badge { background: #ede9fe; color: #6d28d9; }
+.premium-badge { background: #1e293b; color: white; }
+
+/* ---------- CARD ACCENTS ---------- */
+.card.popular  { border: 2px solid #7c3aed; }
+.card.premium  { border: 2px solid #1e293b; }
+
+/* ---------- TERMS ---------- */
+.terms {
+  padding: 64px 20px;
+  background: var(--navy);
+  color: white;
+  margin: 0 -20px;
+}
+
+.terms-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.terms h2 {
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.terms p { margin-bottom: 16px; opacity: 0.85; line-height: 1.7; }
+
+.terms ul {
+  margin: 20px 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.terms li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.terms li:last-child { border-bottom: none; }
+
+.terms-note { font-size: 13px; opacity: 0.6; margin-top: 20px; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .card.popular { transform: none; }
+  .terms { margin: 0 -20px; }
+}

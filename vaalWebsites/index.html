@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vaal Websites - Professional website design for South African businesses. Custom domains, emails, and AI-powered websites from R300/month.">
+  <title>Vaal Websites</title>
+  <link rel="stylesheet" href="stylesheet.css">
+  <link id="page-css" rel="stylesheet" href="">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="#home" class="logo">Vaal Websites</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#products">Products</a>
+      <a href="#about">About</a>
+      <a class="contactSales" href="mailto:info@vaalWebsites.co.za">Contact sales</a>
+    </nav>
+    <div class="nav-actions">
+      <button id="loginBtn" class="btn-login">Login</button>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div id="loginOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="overlay-content">
+      <button class="close-btn" id="closeLoginBtn" aria-label="Close login">&#x2715;</button>
+      <h1 id="loginTitle">Sign in</h1>
+      <p>Access AI services and manage your account</p>
+
+      <button id="loginGoogleBtn" class="btnLogin google" type="button">
+        <svg width="20" height="20" viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <p class="login-terms">Sign in secured by Vaal auth <a href="#products">Terms &amp; Conditions apply</a></p>
+    </div>
+  </div>
+
+  <main id="app" aria-live="polite">
+    <div class="loading-spinner" id="loadingSpinner" aria-hidden="true">
+      <div class="spinner"></div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-column">
+      <h2>Who We Are</h2>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#about">Leadership</a></li>
+        <li><a href="#about">Mission</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h2>Contact Us</h2>
+      <ul>
+        <li>Tel: <a href="tel:0837127931">083 712 7931</a></li>
+        <li>Email: <a href="mailto:info@vaalwebsites.co.za">info@vaalwebsites.co.za</a></li>
+        <li>Address: 129 Lethabong, Sebokeng 1983</li>
+      </ul>
+    </div>
+    <div class="footer-column socials">
+      <h2>Follow Us</h2>
+      <p>Connect with us on social media</p>
+      <ul class="socials-list">
+        <li><a href="https://www.facebook.com/vaalwebsites" target="_blank" rel="noopener" aria-label="Facebook"><img src="assets/icons/socialMediaIcons/facebook.svg" alt="Facebook"></a></li>
+        <li><a href="https://www.instagram.com/vaalwebsites/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/icons/socialMediaIcons/instagram.svg" alt="Instagram"></a></li>
+        <li><a href="https://www.tiktok.com/@vaalwebsites/" target="_blank" rel="noopener" aria-label="TikTok"><img src="assets/icons/socialMediaIcons/tiktok.svg" alt="TikTok"></a></li>
+        <li><a href="https://www.linkedin.com/company/vaal-websites/" target="_blank" rel="noopener" aria-label="LinkedIn"><img src="assets/icons/socialMediaIcons/linkedin.svg" alt="LinkedIn"></a></li>
+        <li><a href="https://twitter.com/VaalWebsites" target="_blank" rel="noopener" aria-label="Twitter/X"><img src="assets/icons/socialMediaIcons/x.svg" alt="Twitter"></a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="footerYear"></span> Vaal Websites. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

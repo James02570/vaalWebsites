@@ -1,0 +1,106 @@
+<section class="dashboard" id="dashboardRoot">
+
+  <!-- HEADER BAR -->
+  <div class="dash-header">
+    <div class="dash-greeting">
+      <div class="dash-avatar" id="dashAvatar">VW</div>
+      <div>
+        <p class="dash-welcome">Welcome back,</p>
+        <h1 class="dash-name" id="dashName">Loading...</h1>
+      </div>
+    </div>
+    <button class="dash-logout-btn" id="dashLogoutBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Sign out
+    </button>
+  </div>
+
+  <!-- STAT CARDS -->
+  <div class="dash-stats">
+    <div class="stat-card">
+      <div class="stat-icon">Plan</div>
+      <div class="stat-body">
+        <p class="stat-label">Active Plan</p>
+        <p class="stat-value" id="dashPlan">-</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">Since</div>
+      <div class="stat-body">
+        <p class="stat-label">Member Since</p>
+        <p class="stat-value" id="dashJoined">-</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">Login</div>
+      <div class="stat-body">
+        <p class="stat-label">Login Method</p>
+        <p class="stat-value" id="dashProvider">-</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">OK</div>
+      <div class="stat-body">
+        <p class="stat-label">Account Status</p>
+        <p class="stat-value dash-status-active">Active</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN GRID -->
+  <div class="dash-grid">
+
+    <div class="dash-panel">
+      <h2 class="dash-panel-title">Quick Actions</h2>
+      <div class="dash-actions">
+        <a href="mailto:info@vaalwebsites.co.za?subject=Support Request" class="dash-action-btn">
+          <span class="da-icon">Help</span>
+          <span>Contact Support</span>
+        </a>
+        <a href="#products" class="dash-action-btn">
+          <span class="da-icon">Upgrade</span>
+          <span>Upgrade Plan</span>
+        </a>
+        <a href="mailto:info@vaalwebsites.co.za?subject=Billing Enquiry" class="dash-action-btn">
+          <span class="da-icon">Bill</span>
+          <span>Billing</span>
+        </a>
+        <a href="#about" class="dash-action-btn">
+          <span class="da-icon">Info</span>
+          <span>About Us</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="dash-panel">
+      <h2 class="dash-panel-title">Account Details</h2>
+      <ul class="dash-details-list">
+        <li>
+          <span class="detail-label">Full Name</span>
+          <span class="detail-value" id="detailName">-</span>
+        </li>
+        <li>
+          <span class="detail-label">Email</span>
+          <span class="detail-value" id="detailEmail">-</span>
+        </li>
+        <li>
+          <span class="detail-label">Plan</span>
+          <span class="detail-value" id="detailPlan">-</span>
+        </li>
+        <li>
+          <span class="detail-label">Provider</span>
+          <span class="detail-value" id="detailProvider">-</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="dash-panel dash-panel--wide">
+      <h2 class="dash-panel-title">Recent Activity</h2>
+      <ul class="dash-activity" id="dashActivity">
+        <!-- Populated by app.js -->
+      </ul>
+    </div>
+
+  </div>
+
+</section>
